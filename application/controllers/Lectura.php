@@ -124,5 +124,29 @@ class Lectura extends CI_Controller{
         else
             show_error('The lectura you are trying to delete does not exist.');
     }
+    function lecturar()
+    {
+        $data['_view'] = 'lectura/lecturar';
+        $this->load->view('layouts/main',$data);
+    }
+    /* busca asociados */
+    function buscarasociado()
+    {
+        //if($this->acceso(31)){
+            if ($this->input->is_ajax_request()){
+                $parametro = $this->input->post('parametro');
+                if ($parametro!=""){
+                    $this->load->model('Asociado_model');
+                    $datos = $this->Asociado_model->get_busqueda_asociado($parametro);
+                    echo json_encode($datos);
+                }
+                else echo json_encode(null);
+            }
+            else
+            {                 
+                show_404();
+            }
+        //}
+    }
     
 }
