@@ -6,7 +6,7 @@
 <input type="hidden" name="asociado_id" id="asociado_id" value="<?php echo $asociado['id_asoc']; ?>" />
 <link href="<?php echo base_url('resources/css/mitabla.css'); ?>" rel="stylesheet">
 
-<div id="grafica"></div><br><br>
+ <div class="container-wrapper"> <div class="col-md-12 table-condensed" id="grafica" ></div>
 
 <div class="col-md-6 table-responsive">
 <table class="table table-striped" id="mitabla">
@@ -125,7 +125,7 @@
                     	$contc=$contc+1; 
                     	$tc+=$f['montototal_fact']; ?>
                     <tr>
-						<td align="center"><?php echo $f['num_fact']; ?></td>
+						<td align="center"><?php echo $contc; ?></td>
 						<td align="center"><?php echo date('d/m/Y', strtotime($f['fecha_fact'])) ?></td>
 						<td align="right"><?php echo $f['totalconsumo_fact']; ?></td>
 						<td align="right"><?php echo $f['montototal_fact']; ?></td>
@@ -162,4 +162,5 @@
 					<th><?php echo $tc; ?></th>
 				</tr>
 </table>
+</div>
 </div>

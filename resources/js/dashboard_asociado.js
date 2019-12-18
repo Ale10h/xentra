@@ -26,19 +26,19 @@ var options={
         type: 'areaspline'
     },
     title: {
-        text: 'Grafico de consumo - ' +registros[0]["apellidos_asoc"]+ ' '+registros[0]["nombres_asoc"]
+        text: 'Gráfico de consumo - ' +registros[0]["apellidos_asoc"]+ ' '+registros[0]["nombres_asoc"]
     },
     
         subtitle: {
-            text: 'Tipo: ' +registros[0]["tipo_asoc"]+ ' Categoria: '+registros[0]["categoria_asoc"],
+            text: 'Tipo: ' +registros[0]["tipo_asoc"]+ ' Categoría: '+registros[0]["categoria_asoc"],
             x: -20
         },
     legend: {
-        layout: 'vertical',
-        align: 'right',
+        layout: 'horizontal',
+        align: 'left',
         verticalAlign: 'top',
-        x: 150,
-        y: 100,
+        x: 0,
+        y: 0,
         floating: true,
         borderWidth: 1,
         backgroundColor:
@@ -49,7 +49,7 @@ var options={
     },
     yAxis: {
         title: {
-            text: 'Metros cubicos'
+            text: 'Metros cúbicos (M3)'
         }
     },
     tooltip: {
@@ -65,16 +65,18 @@ var options={
         }
     },
     series: [{
-        name: registros[0]["apellidos_asoc"],
+        name: 'Consumo',
+        //description: 'ff',
+        //cursor: 'grab',
         data: []
     }] 
   };
-  for(i=0;i<meses;i++){
+  for(i=meses-1;i>=0;i--){
     
-    options.series[0].data.push( Math.round(registros[i]["consumo_lec"]*100)/100 );
+    options.series[0].data.push( Math.round(registros[i]["totalcons_lec"]*100)/100 );
     //options.series[0].name.push( registros[i]["id_asoc"] );
     
-    options.xAxis.categories.push(moment(registros[i]["fecha_lec"]).format('DD/MM/YYYY'));
+    options.xAxis.categories.push(registros[i]["mes_lec"]+'/'+registros[i]["gestion_lec"]);
     }
     $("#grafica").html();
  //options.title.text="aqui e podria cambiar el titulo dinamicamente";

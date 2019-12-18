@@ -48,6 +48,7 @@ class Asociado_model extends CI_Model
             WHERE f.id_lec=l.id_lec
             and f.estado_fact='CANCELADA'
             and l.id_asoc=".$id_asoc."
+            ORDER BY f.fecha_fact DESC
 
         ")->result_array();
 

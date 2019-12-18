@@ -33,7 +33,7 @@ class Asociado extends CI_Controller{
     function ultimas_lecturas()
     {
         $asociado_id = $this->input->post('asociado_id');
-        $ultimas = "SELECT l.*, a.nombres_asoc, a.apellidos_asoc, a.tipo_asoc, a.categoria_asoc     from lectura l, asociado a where a.id_asoc=l.id_asoc and l.id_asoc=".$asociado_id." limit 5";
+        $ultimas = "SELECT l.*, a.nombres_asoc, a.apellidos_asoc, a.tipo_asoc, a.categoria_asoc  from lectura l, asociado a where a.id_asoc=l.id_asoc and l.id_asoc=".$asociado_id." order by l.fecha_lec DESC limit 5";
         $result= $this->db->query($ultimas)->result_array();
         //foreach($result as $res){
         //$mes=intval(date("m",strtotime($res['fecha_lec']) ) );
