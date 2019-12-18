@@ -1,0 +1,60 @@
+#mitabla {
+    
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#mitabla td {
+    font-family: "Arial", Arial, Arial, arial;
+    border: 1px solid #ddd;
+    font-size: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+}
+
+#mitabla tr:nth-child(even){background-color: #f2f2f2;}
+
+#mitabla tr:hover {background-color: #ddd;}
+
+#mitabla th {
+    font-family: "Arial", Arial, Arial, arial;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border: 1px solid #ddd;
+    text-align: center;
+    background-color: #3c8dbc;
+    color: white;
+    font-size: 11px;
+}
+#div1 {
+     overflow:scroll;
+     height:200px;
+     width:500px;
+}
+#div1 table {
+    width:500px;
+    background-color:lightgray;
+}    
+
+ #contieneimg{
+        width: 45px;
+        height: 45px;
+        text-align: center;
+    }
+    #contieneimg img{
+        width: 45px;
+        height: 45px;
+        text-align: center;
+    }
+    #horizontal{
+        display: flex;
+        white-space: nowrap;
+        border-style: none !important;
+    }
+    #masg{
+        font-size: 12px;
+    }
+    td div div{
+        
+    }

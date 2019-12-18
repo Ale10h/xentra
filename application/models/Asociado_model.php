@@ -18,6 +18,42 @@ class Asociado_model extends CI_Model
     {
         return $this->db->get_where('asociado',array('id_asoc'=>$id_asoc))->row_array();
     }
+
+    function get_pendientes($id_asoc)
+    {
+        $pendientes = $this->db->query("
+             SELECT
+                f.* , l.id_asoc
+            FROM
+                factura f, lectura l 
+            
+            
+            WHERE f.id_lec=l.id_lec
+            and f.estado_fact='PENDIENTE'
+            and l.id_asoc=".$id_asoc."
+
+        ")->result_array();
+
+        return $pendientes;
+    }
+    function get_canceladas($id_asoc)
+    {
+        $cancelados = $this->db->query("
+            SELECT
+                f.* , l.id_asoc
+            FROM
+                factura f, lectura l 
+            
+            
+            WHERE f.id_lec=l.id_lec
+            and f.estado_fact='CANCELADA'
+            and l.id_asoc=".$id_asoc."
+            ORDER BY f.fecha_fact DESC
+
+        ")->result_array();
+
+        return $cancelados;
+    }
         
     /*
      * Get all asociado
