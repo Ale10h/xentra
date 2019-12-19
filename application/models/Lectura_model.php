@@ -53,4 +53,49 @@ class Lectura_model extends CI_Model
     {
         return $this->db->delete('lectura',array('id_lec'=>$id_lec));
     }
+    
+    function get_lecturasocio($id_lec)
+    {
+        $sql = "select l.*, a.*
+                from asociado a
+                LEFT JOIN lectura l on a.id_asoc = l.id_asoc
+                where
+                l.id_lec = $id_lec";
+
+        $asociado = $this->db->query($sql)->row_array();
+        return $asociado;
+        
+    }
+    function get_tipoasociado($id_asoc)
+    {
+        $sql = "SELECT a.tipo_asoc
+                    FROM asociado a
+                    where a.id_asoc = $id_asoc";
+
+        $asociado = $this->db->query($sql)->row_array();
+        return $asociado['tipo_asoc'];
+        
+    }
+    function get_tipoaporte()
+    {
+        $sql = "SELECT sum(a.monto_ap) as aporte_total
+                    FROM aporte a
+                    where a.estado_ap = 'ACTIVO'";
+
+        $asociado = $this->db->query($sql)->row_array();
+        return $asociado['aporte_total'];
+        
+    }
+    function get_multa($id_asoc)
+    {
+        $sql = "SELECT m.monto_multa
+                    FROM multa m
+                    where m.id_asoc = $id_asoc
+                    and m.mes_multa = 'N0VIEMBRE'
+                    and m.gestion_multa = '2019'";
+
+        $asociado = $this->db->query($sql)->row_array();
+        return $asociado['monto_multa'];
+        
+    }
 }

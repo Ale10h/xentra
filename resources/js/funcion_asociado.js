@@ -1,6 +1,6 @@
 $(document).on("ready",inicio);
 function inicio(){
-       //tablaresultadoscliente(1);
+       tablaresultados_asociado(1);
 }
 /*
  * Funcion que buscara productos en la tabla productos
@@ -8,23 +8,24 @@ function inicio(){
 function buscar_asociado(e) {
   tecla = (document.all) ? e.keyCode : e.which;
     if (tecla==13){
-        tablaresultadosasociado(2);
+        tablaresultados_asociado(2);
     }
 }
 //Tabla resultados de la busqueda en el index de cliente
-function tablaresultadosasociado(limite)
+function tablaresultados_asociado(limite)
 {
     var controlador = "";
     var parametro = "";
+    var consulta= "";
     var limit = limite;
     var base_url = document.getElementById('base_url').value;
+    controlador = base_url+'asociado/buscar_asociado';
     
     if(limit == 1){
-        controlador = base_url+'cliente/buscarclienteslimit/';
+        consulta = " limit 300";
     }else if(limit == 3){
-        controlador = base_url+'cliente/buscarclientesall/';
+        consulta ="";
     }else{
-        controlador = base_url+'lectura/buscarasociado/';
         parametro = document.getElementById('filtrar').value;
         
     }        
@@ -33,7 +34,7 @@ function tablaresultadosasociado(limite)
 
     $.ajax({url: controlador,
            type:"POST",
-           data:{parametro:parametro},
+           data:{parametro:parametro, consulta:consulta},
            success:function(respuesta){
                
                 //$("#encontrados").val("- 0 -");
@@ -50,16 +51,48 @@ function tablaresultadosasociado(limite)
                         
                         html += "<td>"+(i+1)+"</td>";
                         html += "<td>";
-                        html += registros[i]["nombres_asoc"];
+                        html += "<div style='padding-left: 4px'>";
+                        tam = 3;
+                        var nombre = registros[i]["nombres_asoc"]+" "+registros[i]["apellidos_asoc"]
+                        if(nombre.length>25){
+                           tam = 1; 
+                        }
+                        html += "<b><font face='Arial' size='"+tam+"' >"+nombre+"</font></b><br>";
+                        html += "<b>ZONA: </b>"+registros[i]['zona_asoc']+"<br>";
+                        html += "<b>TELF.: </b>"+registros[i]['telefono_asoc'];
+                        html += "</div>";
                         html += "</td>";
                         html += "<td>";
-                        html += registros[i]["apellidos_asoc"];
+                        html += registros[i]["codigo_asoc"];
+                        html += "</td>";
+                        html += "<td>";
+                        html += registros[i]["ci_asoc"]+" "+registros[i]["cudad"];
                         html += "</td>";
                         html += "<td>";
                         html += registros[i]["direccion_asoc"];
                         html += "</td>";
                         html += "<td>";
-                        html += "<a class='btn btn-success btn-xs' data-toggle='modal' data-target='#modalecturar"+registros[i]["id_asoc"]+"' title='Lecturar'><span class='fa fa-file-text'></span></a>";
+                        html += registros[i]["nit_asoc"];
+                        html += "</td>";
+                        html += "<td>";
+                        html += registros[i]["razon_asoc"];
+                        html += "</td>";
+                        html += "<td>";
+                        html += registros[i]["medidor_asoc"];
+                        html += "</td>";
+                        html += "<td>";
+                        html += registros[i]["servicios_asoc"];
+                        html += "</td>";
+                        html += "<td>";
+                        html += registros[i]["categoria_asoc"];
+                        html += "</td>";
+                        html += "<td>";
+                        html += registros[i]["estado"];
+                        html += "</td>";
+                        html += "<td>";
+                        html += "<a href='"+base_url+"asociado/edit/"+registros[i]['id_asoc']+"' class='btn btn-info btn-xs' title='Modificar datos'><span class='fa fa-pencil'></span></a>";
+                        html += "<a href='"+base_url+"imagen_asociado/catalogoasoc/"+registros[i]['id_asoc']+"' class='btn btn-soundcloud btn-xs' title='Catálogo de imagenes'><span class='fa fa-image'></span></a>";
+                     /*   html += "<a class='btn btn-success btn-xs' data-toggle='modal' data-target='#modalecturar"+registros[i]["id_asoc"]+"' title='Lecturar'><span class='fa fa-file-text'></span></a>";
                         
                         html += "<!------------------------ INICIO modal para confirmar eliminación ------------------->";
                         html += "<div class='modal fade' id='modalecturar"+registros[i]["id_asoc"]+"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel"+i+"'>";
@@ -107,6 +140,7 @@ function tablaresultadosasociado(limite)
                         html += "</div>";
                         html += "</div>";
                         html += "<!------------------------ FIN modal para confirmar eliminación ------------------->";
+                        */
                         html += "</td>";
                         
                         html += "</tr>";
@@ -131,6 +165,14 @@ function tablaresultadosasociado(limite)
     });   
 
 }
+
+
+
+
+
+
+
+
 
 function calcular_consumo(e, id_asoc) {
   tecla = (document.all) ? e.keyCode : e.which;

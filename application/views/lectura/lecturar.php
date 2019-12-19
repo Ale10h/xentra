@@ -1,4 +1,5 @@
 <script src="<?php echo base_url('resources/js/jquery-2.2.3.min.js'); ?>" type="text/javascript"></script>
+<link href="<?php echo base_url('resources/css/mitabla.css'); ?>" rel="stylesheet">
 <!----------------------------- script buscador --------------------------------------->
 <script src="<?php echo base_url('resources/js/lectura_lecturar.js'); ?>" type="text/javascript"></script>
 <input type="hidden" name="base_url" id="base_url" value="<?php echo base_url(); ?>" />
@@ -38,7 +39,7 @@
     <div class="col-md-12">
         <div class="box">
             <div class="box-body table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped" id="mitabla">
                     <tr>
                         <th>#</th>
                         <th>NOMBRE</th>

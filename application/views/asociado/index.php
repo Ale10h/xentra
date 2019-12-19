@@ -1,67 +1,61 @@
+<script src="<?php echo base_url('resources/js/jquery-2.2.3.min.js'); ?>" type="text/javascript"></script>
+<link href="<?php echo base_url('resources/css/mitabla.css'); ?>" rel="stylesheet">
+<!----------------------------- script buscador --------------------------------------->
+<script src="<?php echo base_url('resources/js/funcion_asociado.js'); ?>" type="text/javascript"></script>
+<input type="hidden" name="base_url" id="base_url" value="<?php echo base_url(); ?>" />
+<script type="text/javascript">
+        $(document).ready(function () {
+            (function ($) {
+                $('#filtrar').keyup(function () {
+                    var rex = new RegExp($(this).val(), 'i');
+                    $('.buscar tr').hide();
+                    $('.buscar tr').filter(function () {
+                        return rex.test($(this).text());
+                    }).show();
+                })
+            }(jQuery));
+        });
+</script>   
+<!----------------------------- fin script buscador --------------------------------------->
+<div class="box-header">
+    <h3 class="box-title">Lista de Asociados</h3>
+    <div class="box-tools">
+        <a href="<?php echo site_url('asociado/add'); ?>" class="btn btn-success btn-sm">+ Nuevo</a> 
+    </div>
+</div>
+<div class="col-md-12">
+     <div class="col-md- 6">
+        <div class="input-group">
+            <span class="input-group-addon">Buscar</span>           
+            <input id="filtrar" type="text" class="form-control" placeholder="Ingrese el nombre, codigo, ci, nit" onkeypress="buscar_asociado(event)" autocomplete="off" >
+            <div style="border-color: #008d4c; background: #008D4C !important; color: white" class="btn btn-success input-group-addon" onclick="tablaresultados_asociado(2)"><span class="fa fa-search"></span></div>
+        </div>
+    </div>
+</div>
+<div id='loader'  style='display:none; text-align: center'>
+    <img src="<?php echo base_url("resources/images/loader.gif"); ?>"  >
+</div>
 <div class="row">
     <div class="col-md-12">
         <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">Asociado Listing</h3>
-            	<div class="box-tools">
-                    <a href="<?php echo site_url('asociado/add'); ?>" class="btn btn-success btn-sm">Add</a> 
-                </div>
-            </div>
-            <div class="box-body">
-                <table class="table table-striped">
+            
+            <div class="box-body table-responsive">
+                <table class="table table-striped" id="mitabla">
                     <tr>
-						<th>Id Asoc</th>
-						<th>Id Emp</th>
-						<th>Estado</th>
-						<th>Tipo Asoc</th>
-						<th>Ciudad</th>
-						<th>Nombres Asoc</th>
-						<th>Apellidos Asoc</th>
-						<th>Ci Asoc</th>
-						<th>Direccion Asoc</th>
-						<th>Fechanac Asoc</th>
-						<th>Telefono Asoc</th>
-						<th>Codigo Asoc</th>
-						<th>Nit Asoc</th>
-						<th>Razon Asoc</th>
-						<th>Foto Asoc</th>
-						<th>Fechahora Asoc</th>
-						<th>Zona Asoc</th>
-						<th>Medidor Asoc</th>
-						<th>Servicios Asoc</th>
-						<th>Categoria Asoc</th>
-						<th>Orden Asoc</th>
-						<th>Actions</th>
+                        <th>#</th>
+                        <th>ASOCIADO</th>
+                        <th>CODIGO</th>
+                        <th>C.I.</th>
+                        <th>DIRECCIÓN</th>
+                        <th>NIT</th>
+                        <th>RAZON</th>
+                        <th>MEDIDOR</th>
+                        <th>SERVICIOS</th>
+                        <th>CATEGORIA</th>
+                        <th>ESTADO</th>
+                        <th></th>
                     </tr>
-                    <?php foreach($asociado as $a){ ?>
-                    <tr>
-						<td><?php echo $a['id_asoc']; ?></td>
-						<td><?php echo $a['id_emp']; ?></td>
-						<td><?php echo $a['estado']; ?></td>
-						<td><?php echo $a['tipo_asoc']; ?></td>
-						<td><?php echo $a['ciudad']; ?></td>
-						<td><?php echo $a['nombres_asoc']; ?></td>
-						<td><?php echo $a['apellidos_asoc']; ?></td>
-						<td><?php echo $a['ci_asoc']; ?></td>
-						<td><?php echo $a['direccion_asoc']; ?></td>
-						<td><?php echo $a['fechanac_asoc']; ?></td>
-						<td><?php echo $a['telefono_asoc']; ?></td>
-						<td><?php echo $a['codigo_asoc']; ?></td>
-						<td><?php echo $a['nit_asoc']; ?></td>
-						<td><?php echo $a['razon_asoc']; ?></td>
-						<td><?php echo $a['foto_asoc']; ?></td>
-						<td><?php echo $a['fechahora_asoc']; ?></td>
-						<td><?php echo $a['zona_asoc']; ?></td>
-						<td><?php echo $a['medidor_asoc']; ?></td>
-						<td><?php echo $a['servicios_asoc']; ?></td>
-						<td><?php echo $a['categoria_asoc']; ?></td>
-						<td><?php echo $a['orden_asoc']; ?></td>
-						<td>
-                            <a href="<?php echo site_url('asociado/edit/'.$a['id_asoc']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
-                            <a href="<?php echo site_url('asociado/remove/'.$a['id_asoc']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>
-                        </td>
-                    </tr>
-                    <?php } ?>
+                    <tbody class="buscar" id="tablaresultados"></tbody>
                 </table>
                                 
             </div>

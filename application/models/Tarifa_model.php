@@ -53,4 +53,17 @@ class Tarifa_model extends CI_Model
     {
         return $this->db->delete('tarifa',array('id_tarifa'=>$id_tarifa));
     }
+    /* obtener tarifa */
+    function get_estatarifa($consumo_lec, $tipo_asoc)
+    {
+        $sql = "select t.costo_agua, t.costo_alcant, t.id_tarifa
+                from tarifa t
+                where
+                t.desde >= $consumo_lec
+                and t.hasta <= $consumo_lec
+                and t.tipo = '".$tipo_asoc."'";
+
+        $asociado = $this->db->query($sql)->row_array();
+        return $asociado;
+    }    
 }
