@@ -9,6 +9,10 @@ class Aporte extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('Aporte_model');
+        $this->load->model('Estado_model');
+        $this->load->model('Tipo_aporte_model');
+        $this->load->model('Me_model');
+        $this->load->model('Gestion_model');
     } 
 
     /*
@@ -27,18 +31,19 @@ class Aporte extends CI_Controller{
      */
     function add()
     {   
+        $created_date = date("Y-m-d H:i:s");
         if(isset($_POST) && count($_POST) > 0)     
         {   
             $params = array(
 				'motivo_ap' => $this->input->post('motivo_ap'),
 				'detalle_ap' => $this->input->post('detalle_ap'),
 				'monto_ap' => $this->input->post('monto_ap'),
-				'fechahora_ap' => $this->input->post('fechahora_ap'),
+				'fechahora_ap' => $created_date,
 				'mes_ap' => $this->input->post('mes_ap'),
 				'gestion_ap' => $this->input->post('gestion_ap'),
 				'tipo_ap' => $this->input->post('tipo_ap'),
-				'estado_ap' => $this->input->post('estado_ap'),
-				'id_usu' => $this->input->post('id_usu'),
+				'estado_ap' => 'ACTIVO',
+				'id_usu' => 1,
 				'exento_ap' => $this->input->post('exento_ap'),
 				'ice_ap' => $this->input->post('ice_ap'),
             );
@@ -47,7 +52,11 @@ class Aporte extends CI_Controller{
             redirect('aporte/index');
         }
         else
-        {            
+        {        
+            $data['all_gestion'] = $this->Gestion_model->get_all_gestion();
+            $data['all_estado'] = $this->Estado_model->get_all_estados();
+            $data['all_mes'] = $this->Me_model->get_all_mes();
+            $data['all_tipo'] = $this->Tipo_aporte_model->get_all_tipo_aporte();
             $data['_view'] = 'aporte/add';
             $this->load->view('layouts/main',$data);
         }
@@ -74,7 +83,7 @@ class Aporte extends CI_Controller{
 					'gestion_ap' => $this->input->post('gestion_ap'),
 					'tipo_ap' => $this->input->post('tipo_ap'),
 					'estado_ap' => $this->input->post('estado_ap'),
-					'id_usu' => $this->input->post('id_usu'),
+					'id_usu' => 1,
 					'exento_ap' => $this->input->post('exento_ap'),
 					'ice_ap' => $this->input->post('ice_ap'),
                 );
@@ -84,6 +93,10 @@ class Aporte extends CI_Controller{
             }
             else
             {
+                $data['all_gestion'] = $this->Gestion_model->get_all_gestion();
+                $data['all_estado'] = $this->Estado_model->get_all_estados();
+                $data['all_mes'] = $this->Me_model->get_all_mes();
+                $data['all_tipo'] = $this->Tipo_aporte_model->get_all_tipo_aporte();
                 $data['_view'] = 'aporte/edit';
                 $this->load->view('layouts/main',$data);
             }
