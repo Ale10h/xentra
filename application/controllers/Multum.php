@@ -109,6 +109,45 @@ class Multum extends CI_Controller{
             show_error('The multum you are trying to edit does not exist.');
     } 
 
+
+function buscar_asociado()
+    {       
+
+        //**************** inicio contenido ***************       
+        
+        //$usuario_id = $this->session_data['usuario_id'];
+        $parametro = $this->input->post('parametro');
+        
+        $sql =  "select * from asociado where nombres_asoc like '%".$parametro."%' or apellidos_asoc like '%".$parametro."%' or ci_asoc like '%".$parametro."%' ";
+        //echo $sql;
+        $resultado = $this->db->query($sql)->result_array();
+        echo json_encode($resultado);
+    
+                    
+        //**************** fin contenido ***************
+                    
+                
+    }
+        
+    function seleccionar_cliente($id_asoc){
+        
+               //**************** inicio contenido ***************       
+
+               //$usuario_id = $this->session_data['usuario_id'];
+               
+               
+               $sql =  "select * from asociado where ".
+                       " id_asoc = ".$id_asoc;
+               
+               $resultado = $this->db->query($sql)->result_array();
+               echo json_encode($resultado);
+
+
+               //**************** fin contenido ***************
+                                    
+                                        
+        
+    }
     /*
      * Deleting multum
      */
