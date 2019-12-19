@@ -89,4 +89,44 @@ class Asociado_model extends CI_Model
     {
         return $this->db->delete('asociado',array('id_asoc'=>$id_asoc));
     }
+    function get_busqueda_asociado($parametro)
+    {
+        $sql = "select
+                a.id_asoc, a.nombres_asoc, a.apellidos_asoc, a.codigo_asoc, a.razon_asoc, a.ci_asoc,
+                a.nit_asoc, a.direccion_asoc, a.medidor_asoc, ifnull(t1.este_lec, 0) as ultima_lectura,
+                t1.fecha_anterior
+                from asociado a
+                LEFT JOIN
+                  (SELECT l.actual_lec as este_lec, l.id_asoc as esteasoc_id, l.fecha_lec as fecha_anterior
+                    FROM lectura l group by l.id_asoc desc ) as t1 on t1.esteasoc_id = a.id_asoc
+                where
+                a.nombres_asoc like '%".$parametro."%' or a.apellidos_asoc like '%".$parametro."%'
+                or a.codigo_asoc = '".$parametro."' or a.razon_asoc like '%".$parametro."%'
+                or a.ci_asoc like '%".$parametro."%' or a.nit_asoc like '%".$parametro."%'";
+
+        $asociado = $this->db->query($sql)->result_array();
+        return $asociado;
+    }
+    /* busca asociados */
+    function busqueda_asociado($parametro, $consulta)
+    {
+        if($consulta != ""){
+            $sql = "select a.*
+                from asociado a
+                where
+                1 = 1
+                $consulta";
+        }else{
+        $sql = "select a.*
+                from asociado a
+                where
+                a.nombres_asoc like '%".$parametro."%' or a.apellidos_asoc like '%".$parametro."%'
+                or a.codigo_asoc = '".$parametro."' or a.razon_asoc like '%".$parametro."%'
+                or a.ci_asoc like '%".$parametro."%' or a.nit_asoc like '%".$parametro."%'
+                $consulta";
+        }
+        $asociado = $this->db->query($sql)->result_array();
+        return $asociado;
+    }
+    
 }

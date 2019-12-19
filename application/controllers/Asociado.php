@@ -16,7 +16,7 @@ class Asociado extends CI_Controller{
      */
     function index()
     {
-        $data['asociado'] = $this->Asociado_model->get_all_asociado();
+        //$data['asociado'] = $this->Asociado_model->get_all_asociado();
         
         $data['_view'] = 'asociado/index';
         $this->load->view('layouts/main',$data);
@@ -151,6 +151,23 @@ class Asociado extends CI_Controller{
         }
         else
             show_error('The asociado you are trying to delete does not exist.');
+    }
+    /* busca asociados */
+    function buscar_asociado()
+    {
+        if ($this->input->is_ajax_request()){
+            $parametro = $this->input->post('parametro');
+            $consulta  = $this->input->post('consulta');
+            //if($parametro != ""){
+                $datos = $this->Asociado_model->busqueda_asociado($parametro, $consulta);
+                echo json_encode($datos);
+            //}
+            //else echo json_encode(null);
+        }
+        else
+        {                 
+            show_404();
+        }
     }
     
 }
