@@ -247,7 +247,8 @@ function registrar_lectura(id_asoc)
                var registros =  JSON.parse(respuesta);
                 
                 if (registros != null){
-                    window.open(base_url+'lectura/recibo_boucher/'+registros, '_blank');
+                    //window.open(base_url+'lectura/recibo_boucher/'+registros, '_blank');
+                    //window.open(base_url+'factura/preaviso/', '_blank');
                     //window.opener.location.reload();
                     location.reload();
                 }
