@@ -2,95 +2,116 @@
     <div class="col-md-12">
       	<div class="box box-info">
             <div class="box-header with-border">
-              	<h3 class="box-title">Multum Add</h3>
+              	<h3 class="box-title">Registro de Multa</h3>
             </div>
             <?php echo form_open('multum/add'); ?>
           	<div class="box-body">
           		<div class="row clearfix">
-					<div class="col-md-6">
-						<label for="motivo_multa" class="control-label">Motivo Multa</label>
-						<div class="form-group">
-							<input type="text" name="motivo_multa" value="<?php echo $this->input->post('motivo_multa'); ?>" class="form-control" id="motivo_multa" />
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="detalle_multa" class="control-label">Detalle Multa</label>
-						<div class="form-group">
-							<input type="text" name="detalle_multa" value="<?php echo $this->input->post('detalle_multa'); ?>" class="form-control" id="detalle_multa" />
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="monto_multa" class="control-label">Monto Multa</label>
-						<div class="form-group">
-							<input type="text" name="monto_multa" value="<?php echo $this->input->post('monto_multa'); ?>" class="form-control" id="monto_multa" />
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="fechahora_multa" class="control-label">Fechahora Multa</label>
-						<div class="form-group">
-							<input type="text" name="fechahora_multa" value="<?php echo $this->input->post('fechahora_multa'); ?>" class="form-control" id="fechahora_multa" />
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="mes_multa" class="control-label">Mes Multa</label>
-						<div class="form-group">
-							<input type="text" name="mes_multa" value="<?php echo $this->input->post('mes_multa'); ?>" class="form-control" id="mes_multa" />
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="gestion_multa" class="control-label">Gestion Multa</label>
-						<div class="form-group">
-							<input type="text" name="gestion_multa" value="<?php echo $this->input->post('gestion_multa'); ?>" class="form-control" id="gestion_multa" />
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="tipo_multa" class="control-label">Tipo Multa</label>
-						<div class="form-group">
-							<input type="text" name="tipo_multa" value="<?php echo $this->input->post('tipo_multa'); ?>" class="form-control" id="tipo_multa" />
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="id_asoc" class="control-label">Id Asoc</label>
+          			<div class="col-md-6">
+						<label for="id_asoc" class="control-label">Buscar Asociado</label>
 						<div class="form-group">
 							<input type="text" name="id_asoc" value="<?php echo $this->input->post('id_asoc'); ?>" class="form-control" id="id_asoc" />
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="nombre_asoc" class="control-label">Nombre Asoc</label>
+						<label for="nombre_asoc" class="control-label">Nombre Asociado</label>
 						<div class="form-group">
 							<input type="text" name="nombre_asoc" value="<?php echo $this->input->post('nombre_asoc'); ?>" class="form-control" id="nombre_asoc" />
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="estado_multa" class="control-label">Estado Multa</label>
+						<label for="motivo_multa" class="control-label">Motivo </label>
 						<div class="form-group">
-							<input type="text" name="estado_multa" value="<?php echo $this->input->post('estado_multa'); ?>" class="form-control" id="estado_multa" />
+							<input type="text" name="motivo_multa" value="<?php echo $this->input->post('motivo_multa'); ?>" onkeyup="var start = this.selectionStart; var end = this.selectionEnd; this.value = this.value.toUpperCase(); this.setSelectionRange(start, end);" class="form-control" id="motivo_multa" />
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="id_usu" class="control-label">Id Usu</label>
+						<label for="detalle_multa" class="control-label">Detalle </label>
 						<div class="form-group">
-							<input type="text" name="id_usu" value="<?php echo $this->input->post('id_usu'); ?>" class="form-control" id="id_usu" />
+							<input type="text" name="detalle_multa" value="<?php echo $this->input->post('detalle_multa'); ?>" onkeyup="var start = this.selectionStart; var end = this.selectionEnd; this.value = this.value.toUpperCase(); this.setSelectionRange(start, end);" class="form-control" id="detalle_multa" />
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="exento_multa" class="control-label">Exento Multa</label>
+						<label for="monto_multa" class="control-label">Monto </label>
 						<div class="form-group">
-							<input type="text" name="exento_multa" value="<?php echo $this->input->post('exento_multa'); ?>" class="form-control" id="exento_multa" />
+							<input type="number" step="any" name="monto_multa" value="<?php echo $this->input->post('monto_multa'); ?>" class="form-control" id="monto_multa" />
+						</div>
+					</div>
+					<!--<div class="col-md-6">
+						<label for="fechahora_multa" class="control-label">Fechahora </label>
+						<div class="form-group">
+							<input type="text" name="fechahora_multa" value="<?php echo $this->input->post('fechahora_multa'); ?>" class="form-control" id="fechahora_multa" />
+						</div>
+					</div>-->
+					<div class="col-md-6">
+						<label for="mes_multa" class="control-label">Mes </label>
+						<div class="form-group">
+							<select name="mes_multa" class="form-control" required>
+							<?php 
+                                            foreach($all_mes as $mes)
+                                            {
+                                                    $selected = ($mes['mes_lec'] == $this->input->post('mes_multa')) ? ' selected="selected"' : "";
+
+                                                    echo '<option value="'.$mes['mes_lec'].'" '.$selected.'>'.$mes['mes_lec'].'</option>';
+                                            } 
+                                            ?>
+                                        </select>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="ice_multa" class="control-label">Ice Multa</label>
+						<label for="gestion_multa" class="control-label">Gestion </label>
 						<div class="form-group">
-							<input type="text" name="ice_multa" value="<?php echo $this->input->post('ice_multa'); ?>" class="form-control" id="ice_multa" />
+							<select name="gestion_multa" class="form-control" required>
+							<?php 
+                                            foreach($all_gestion as $gestion)
+                                            {
+                                                    $selected = ($gestion['gestion_lec'] == $this->input->post('gestion_multa')) ? ' selected="selected"' : "";
+
+                                                    echo '<option value="'.$gestion['gestion_lec'].'" '.$selected.'>'.$gestion['gestion_lec'].'</option>';
+                                            } 
+                                            ?>
+                                        </select>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="tipo_multa" class="control-label">Tipo </label>
+						<div class="form-group">
+							<select name="tipo_multa" class="form-control" required>
+                                            
+                                            <?php 
+                                            foreach($all_tipo as $tipo)
+                                            {
+                                                    $selected = ($tipo['tipo'] == $this->input->post('tipo_multa')) ? ' selected="selected"' : "";
+
+                                                    echo '<option value="'.$tipo['tipo'].'" '.$selected.'>'.$tipo['tipo'].'</option>';
+                                            } 
+                                            ?>
+                                    </select>
+						</div>
+					</div>
+					
+					
+					
+					<div class="col-md-6">
+						<label for="exento_multa" class="control-label">Exento </label>
+						<div class="form-group">
+							<input type="text" onkeyup="var start = this.selectionStart; var end = this.selectionEnd; this.value = this.value.toUpperCase(); this.setSelectionRange(start, end);" name="exento_multa" value="<?php echo $this->input->post('exento_multa'); ?>" class="form-control" id="exento_multa" />
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="ice_multa" class="control-label">Ice </label>
+						<div class="form-group">
+							<input type="text" onkeyup="var start = this.selectionStart; var end = this.selectionEnd; this.value = this.value.toUpperCase(); this.setSelectionRange(start, end);" name="ice_multa" value="<?php echo $this->input->post('ice_multa'); ?>" class="form-control" id="ice_multa" />
 						</div>
 					</div>
 				</div>
 			</div>
           	<div class="box-footer">
             	<button type="submit" class="btn btn-success">
-            		<i class="fa fa-check"></i> Save
+            		<i class="fa fa-check"></i> Guardar
             	</button>
+            	<a href="<?php echo site_url('multum'); ?>" class="btn btn-danger">
+                       <i class="fa fa-times"></i> Cancelar</a>
           	</div>
             <?php echo form_close(); ?>
       	</div>

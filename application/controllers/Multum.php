@@ -9,6 +9,10 @@ class Multum extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('Multum_model');
+        $this->load->model('Estado_model');
+        $this->load->model('Tipo_multum_model');
+        $this->load->model('Me_model');
+        $this->load->model('Gestion_model');
     } 
 
     /*
@@ -27,20 +31,21 @@ class Multum extends CI_Controller{
      */
     function add()
     {   
+        $created_date = date("Y-m-d H:i:s");
         if(isset($_POST) && count($_POST) > 0)     
         {   
             $params = array(
 				'motivo_multa' => $this->input->post('motivo_multa'),
 				'detalle_multa' => $this->input->post('detalle_multa'),
 				'monto_multa' => $this->input->post('monto_multa'),
-				'fechahora_multa' => $this->input->post('fechahora_multa'),
+				'fechahora_multa' => $created_date,
 				'mes_multa' => $this->input->post('mes_multa'),
 				'gestion_multa' => $this->input->post('gestion_multa'),
 				'tipo_multa' => $this->input->post('tipo_multa'),
 				'id_asoc' => $this->input->post('id_asoc'),
 				'nombre_asoc' => $this->input->post('nombre_asoc'),
-				'estado_multa' => $this->input->post('estado_multa'),
-				'id_usu' => $this->input->post('id_usu'),
+				'estado_multa' => 'ACTIVO',
+				'id_usu' => 1,
 				'exento_multa' => $this->input->post('exento_multa'),
 				'ice_multa' => $this->input->post('ice_multa'),
             );
@@ -50,6 +55,10 @@ class Multum extends CI_Controller{
         }
         else
         {            
+            $data['all_gestion'] = $this->Gestion_model->get_all_gestion();
+            $data['all_estado'] = $this->Estado_model->get_all_estados();
+            $data['all_mes'] = $this->Me_model->get_all_mes();
+            $data['all_tipo'] = $this->Tipo_multum_model->get_all_tipo_multa();
             $data['_view'] = 'multum/add';
             $this->load->view('layouts/main',$data);
         }
@@ -88,6 +97,10 @@ class Multum extends CI_Controller{
             }
             else
             {
+                $data['all_gestion'] = $this->Gestion_model->get_all_gestion();
+            $data['all_estado'] = $this->Estado_model->get_all_estados();
+            $data['all_mes'] = $this->Me_model->get_all_mes();
+            $data['all_tipo'] = $this->Tipo_multum_model->get_all_tipo_multa();
                 $data['_view'] = 'multum/edit';
                 $this->load->view('layouts/main',$data);
             }

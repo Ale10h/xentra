@@ -24,7 +24,7 @@ class Aporte_model extends CI_Model
      */
     function get_all_aporte()
     {
-        $this->db->order_by('id_ap', 'desc');
+        $this->db->order_by('id_ap', 'asc');
         return $this->db->get('aporte')->result_array();
     }
         
